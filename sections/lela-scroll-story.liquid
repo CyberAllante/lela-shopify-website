@@ -1,0 +1,210 @@
+<style>
+  .lela-scroll-story {
+    position: relative;
+    display: flex;
+    width: 100%;
+  }
+
+  .lela-scroll-story__media {
+    position: sticky;
+    top: 0;
+    left: 0;
+    width: 50%;
+    height: 100vh;
+    overflow: hidden;
+  }
+
+  .lela-scroll-story__media video,
+  .lela-scroll-story__media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .lela-scroll-story__slides {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .lela-scroll-story__slide {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 2rem 3rem;
+    box-sizing: border-box;
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+  }
+
+  .lela-scroll-story__slide.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .lela-scroll-story__slide-title {
+    font-size: 2rem;
+    margin: 0 0 1rem 0;
+    font-weight: 600;
+  }
+
+  .lela-scroll-story__slide-text {
+    font-size: 1.125rem;
+    line-height: 1.6;
+    margin: 0;
+    color: rgba(0, 0, 0, 0.75);
+  }
+
+  @media (max-width: 768px) {
+    .lela-scroll-story {
+      flex-direction: column;
+    }
+
+    .lela-scroll-story__media {
+      position: relative;
+      width: 100%;
+      height: 50vh;
+    }
+
+    .lela-scroll-story__slides {
+      width: 100%;
+    }
+
+    .lela-scroll-story__slide {
+      height: auto;
+      min-height: 50vh;
+      padding: 2rem 1.5rem;
+    }
+  }
+</style>
+
+<section class="lela-scroll-story" data-section-id="{{ section.id }}">
+  <div class="lela-scroll-story__media">
+    {%- if section.settings.video_url != blank -%}
+      <video autoplay muted loop playsinline>
+        <source src="{{ section.settings.video_url }}" type="video/mp4">
+        {%- if section.settings.fallback_image != blank -%}
+          <img src="{{ section.settings.fallback_image | image_url: width: 1200 }}" alt="{{ section.settings.fallback_image.alt | escape }}">
+        {%- endif -%}
+      </video>
+    {%- elsif section.settings.fallback_image != blank -%}
+      <img
+        src="{{ section.settings.fallback_image | image_url: width: 1200 }}"
+        alt="{{ section.settings.fallback_image.alt | escape }}"
+        loading="lazy"
+      >
+    {%- else -%}
+      <div style="width:100%;height:100%;background:#f0f0f0;"></div>
+    {%- endif -%}
+  </div>
+
+  <div class="lela-scroll-story__slides">
+    {%- for block in section.blocks -%}
+      <div class="lela-scroll-story__slide" {{ block.shopify_attributes }}>
+        {%- if block.settings.title != blank -%}
+          <h2 class="lela-scroll-story__slide-title">{{ block.settings.title }}</h2>
+        {%- endif -%}
+        {%- if block.settings.text != blank -%}
+          <p class="lela-scroll-story__slide-text">{{ block.settings.text }}</p>
+        {%- endif -%}
+      </div>
+    {%- endfor -%}
+  </div>
+</section>
+
+<script>
+  (function() {
+    const section = document.querySelector('[data-section-id="{{ section.id }}"]');
+    if (!section) return;
+
+    const slides = section.querySelectorAll('.lela-scroll-story__slide');
+    if (!slides.length) return;
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+        } else {
+          entry.target.classList.remove('is-visible');
+        }
+      });
+    }, {
+      root: null,
+      rootMargin: '0px',
+      threshold: 0.3
+    });
+
+    slides.forEach((slide) => observer.observe(slide));
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "LELA Scroll Story",
+  "class": "lela-scroll-story-section",
+  "settings": [
+    {
+      "type": "url",
+      "id": "video_url",
+      "label": "Video URL (MP4)",
+      "info": "Enter the full URL to an MP4 video file."
+    },
+    {
+      "type": "image_picker",
+      "id": "fallback_image",
+      "label": "Fallback Image",
+      "info": "Displayed if video is not provided or cannot load."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "slide",
+      "name": "Slide",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Slide Title"
+        },
+        {
+          "type": "textarea",
+          "id": "text",
+          "label": "Text",
+          "default": "Add your story text here. Each slide scrolls into view with a smooth fade animation."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "LELA Scroll Story",
+      "blocks": [
+        {
+          "type": "slide",
+          "settings": {
+            "title": "Our Beginning",
+            "text": "Every great story starts with a single moment of inspiration."
+          }
+        },
+        {
+          "type": "slide",
+          "settings": {
+            "title": "The Craft",
+            "text": "We pour dedication and artistry into every piece we create."
+          }
+        },
+        {
+          "type": "slide",
+          "settings": {
+            "title": "Your Story",
+            "text": "Now it's your turn to be part of the journey."
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
