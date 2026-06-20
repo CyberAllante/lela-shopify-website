@@ -1,0 +1,5 @@
+# Core bot runs on the Python standard library only (mock feed, paper broker).
+# The packages below are optional and only needed for specific features:
+
+PyYAML>=6.0        # read config.yaml (the bot falls back to defaults without it)
+websockets>=12.0   # required only for feed.source: pumpportal (live pump.fun stream)
