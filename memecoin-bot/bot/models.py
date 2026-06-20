@@ -58,10 +58,14 @@ class Position:
     opened_at: float = field(default_factory=time.time)
     # Highest price seen since entry, used for the trailing stop.
     peak_price_sol: float = 0.0
+    # Most recent price observed, used for live mark-to-market in the dashboard.
+    last_price_sol: float = 0.0
 
     def __post_init__(self) -> None:
         if self.peak_price_sol <= 0:
             self.peak_price_sol = self.entry_price_sol
+        if self.last_price_sol <= 0:
+            self.last_price_sol = self.entry_price_sol
 
     def unrealized_pct(self, current_price_sol: float) -> float:
         """Return the unrealized return as a fraction (0.25 == +25%)."""

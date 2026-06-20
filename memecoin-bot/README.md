@@ -74,6 +74,21 @@ Closed trades : 4  (wins 1 / losses 3, win rate 25%)
 Realized PnL  : -0.025367 SOL
 ```
 
+## Web dashboard
+
+A live, auto-refreshing web UI that runs the bot in the background and shows
+equity, realized P&L, win rate, open positions, and recent exits — built on the
+**Python standard library only** (no framework):
+
+```bash
+python web/server.py                      # mock feed  -> http://127.0.0.1:8000
+python web/server.py --feed pumpportal    # live pump.fun data
+python web/server.py --port 9000 --config config.yaml
+```
+
+Open the printed URL in a browser. The page polls `/api/state` (JSON) once a
+second; it's a read-only window into the paper bot and places no real trades.
+
 ## Using the live pump.fun feed (still paper trades!)
 
 ```bash
@@ -125,6 +140,9 @@ memecoin-bot/
 │   ├── trade_log.py        # trades.csv writer
 │   ├── feeds/              # mock + pumpportal (live) data sources
 │   └── engine/             # paper_broker, portfolio, strategy
+├── web/
+│   ├── server.py           # stdlib HTTP server (runs bot + serves dashboard)
+│   └── index.html          # live auto-refreshing dashboard
 └── tests/
 ```
 

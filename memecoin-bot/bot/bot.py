@@ -39,6 +39,72 @@ class TradingBot:
     def request_stop(self) -> None:
         self._stop.set()
 
+    def snapshot(self) -> dict:
+        """A JSON-serialisable view of live state for the web dashboard."""
+        pf = self.portfolio
+        start = self.cfg.broker.starting_balance_sol
+        cash = self.broker.balance_sol
+
+        open_positions = []
+        open_value = 0.0
+        for p in pf.open_positions:
+            mark = p.last_price_sol or p.entry_price_sol
+            value = p.token_amount * mark
+            open_value += value
+            open_positions.append(
+                {
+                    "symbol": p.symbol,
+                    "mint": p.mint,
+                    "entry_price_sol": p.entry_price_sol,
+                    "last_price_sol": mark,
+                    "token_amount": p.token_amount,
+                    "cost_sol": p.cost_sol,
+                    "value_sol": value,
+                    "unrealized_pct": p.unrealized_pct(mark) * 100,
+                    "age_seconds": p.age_seconds(),
+                }
+            )
+
+        recent = []
+        for t in reversed(pf.closed[-25:]):
+            recent.append(
+                {
+                    "symbol": t.symbol,
+                    "reason": t.reason.value,
+                    "pnl_sol": t.pnl_sol,
+                    "pnl_pct": t.pnl_pct * 100,
+                    "hold_seconds": t.hold_seconds,
+                    "closed_at": t.closed_at,
+                }
+            )
+
+        equity = cash + open_value
+        return {
+            "running": not self._stop.is_set(),
+            "feed": self.cfg.feed.source,
+            "config": {
+                "buy_amount_sol": self.cfg.strategy.buy_amount_sol,
+                "take_profit_pct": self.cfg.strategy.take_profit_pct * 100,
+                "stop_loss_pct": self.cfg.strategy.stop_loss_pct * 100,
+                "trailing_stop_pct": self.cfg.strategy.trailing_stop_pct * 100,
+                "max_hold_seconds": self.cfg.strategy.max_hold_seconds,
+                "max_open_positions": self.cfg.strategy.max_open_positions,
+            },
+            "starting_balance_sol": start,
+            "cash_sol": cash,
+            "open_value_sol": open_value,
+            "equity_sol": equity,
+            "realized_pnl_sol": pf.realized_pnl_sol,
+            "net_change_sol": equity - start,
+            "net_change_pct": (equity / start - 1) * 100 if start else 0.0,
+            "closed_count": len(pf.closed),
+            "wins": pf.wins,
+            "losses": pf.losses,
+            "win_rate_pct": pf.win_rate * 100,
+            "open_positions": open_positions,
+            "recent_trades": recent,
+        }
+
     async def run(self, max_runtime_s: Optional[float] = None) -> None:
         self.log.info(
             "Starting PAPER bot | feed=%s | start balance=%.4f SOL | "
@@ -115,6 +181,7 @@ class TradingBot:
         if position is None:
             return
 
+        position.last_price_sol = tick.price_sol
         reason = self.strategy.check_exit(position, tick.price_sol)
         if reason is None:
             return
