@@ -1,8 +1,0 @@
-__pycache__/
-*.pyc
-.pytest_cache/
-trades.csv
-.venv/
-venv/
-*.egg-info/
-.env
