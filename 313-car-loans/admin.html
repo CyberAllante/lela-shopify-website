@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Inventory Manager | Matthew's Stop and Look Auto Sales</title>
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><polygon points='29,2 71,2 98,29 98,71 71,98 29,98 2,71 2,29' fill='%23c1121f'/><polygon points='33,9 67,9 91,33 91,67 67,91 33,91 9,67 9,33' fill='none' stroke='white' stroke-width='4'/><text x='50' y='62' font-size='26' font-weight='900' text-anchor='middle' font-family='Arial' fill='white'>STOP</text></svg>">
+  <style>
+    .admin-wrap { max-width: 1160px; margin: 0 auto; padding: 26px 20px 60px; }
+    .admin-head { display: flex; justify-content: space-between; align-items: center; gap: 14px; flex-wrap: wrap; margin-bottom: 20px; }
+    .admin-head h1 { font-size: 26px; font-weight: 900; }
+    .admin-cols { display: grid; grid-template-columns: 1fr 1.1fr; gap: 22px; align-items: start; }
+    .admin-list { display: grid; gap: 10px; }
+    .admin-row { background: var(--card); border-radius: 8px; box-shadow: var(--shadow); padding: 12px 14px; display: flex; gap: 12px; align-items: center; }
+    .admin-row img { width: 74px; height: 56px; object-fit: cover; border-radius: 6px; background: #dfe6f2; flex: 0 0 auto; }
+    .admin-row .meta { min-width: 0; flex: 1; }
+    .admin-row .meta strong { display: block; font-size: 14.5px; line-height: 1.25; }
+    .admin-row .meta span { font-size: 12.5px; color: var(--ink-soft); }
+    .admin-row .ops { display: flex; gap: 6px; flex-wrap: wrap; justify-content: flex-end; }
+    .op { border: 0; cursor: pointer; font-family: var(--font); font-weight: 700; font-size: 12px; padding: 6px 10px; border-radius: 5px; background: var(--gray-100); color: var(--dark-800); }
+    .op:hover { background: #dde3ee; }
+    .op.warn { background: #fbe3e5; color: var(--brand-600); }
+    .op.on { background: var(--brand-600); color: #fff; }
+    .badge-sold { background: var(--dark-800); color: #fff; font-size: 10.5px; font-weight: 800; border-radius: 4px; padding: 2px 7px; margin-left: 6px; }
+    .drop-zone { border: 2px dashed var(--line); border-radius: 8px; padding: 16px; text-align: center; color: var(--ink-soft); font-size: 13.5px; cursor: pointer; transition: border-color .15s ease, background .15s ease; }
+    .drop-zone.hot { border-color: var(--brand-600); background: #fdf1f2; }
+    .admin-bar { position: sticky; top: 0; z-index: 20; background: var(--dark-800); color: #fff; padding: 10px 0; margin-bottom: 22px; box-shadow: 0 3px 12px rgba(0,0,0,.25); }
+    .admin-bar .container { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+    .admin-bar .grow { flex: 1; font-size: 13px; color: #c2cddf; min-width: 200px; }
+    .photo-thumbs { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 8px; }
+    .photo-thumbs .pt { position: relative; }
+    .photo-thumbs img { width: 74px; height: 56px; object-fit: cover; border-radius: 6px; }
+    .photo-thumbs button { position: absolute; top: -6px; right: -6px; width: 20px; height: 20px; border-radius: 50%; border: 0; background: var(--brand-600); color: #fff; font-weight: 900; font-size: 11px; cursor: pointer; line-height: 1; }
+    @media (max-width: 960px) { .admin-cols { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body data-page="admin">
+
+  <div class="admin-bar">
+    <div class="container">
+      <img src="assets/logo.png" alt="" style="height:44px;width:auto">
+      <strong>Inventory Manager</strong>
+      <span class="grow" id="save-state">Loaded current inventory.</span>
+      <button class="btn btn-primary btn-sm" id="btn-download">⬇ Download inventory.js</button>
+      <a class="btn btn-ghost btn-sm" href="index.html" target="_blank" rel="noopener">View Site</a>
+    </div>
+  </div>
+
+  <div class="admin-wrap">
+    <div style="display:flex;gap:8px;margin-bottom:22px">
+      <button class="btn btn-primary" id="tab-inventory">Inventory</button>
+      <button class="btn btn-ghost" id="tab-apps">Credit Apps <span id="apps-badge" style="background:#fff;color:var(--brand-600);border-radius:4px;padding:0 7px;font-size:12px;margin-left:4px">0</span></button>
+    </div>
+
+    <div id="view-inventory">
+    <div class="admin-head">
+      <h1>Cars on the lot (<span id="count">0</span>)</h1>
+      <button class="btn btn-dark" id="btn-new">+ Add a Car</button>
+    </div>
+
+    <div class="admin-cols">
+      <div class="admin-list" id="list"></div>
+
+      <div class="form-card" style="max-width:none" id="editor" hidden>
+        <h2 id="editor-title" style="font-size:20px;font-weight:800;margin-bottom:14px">Add a Car</h2>
+        <form id="car-form">
+          <div class="form-grid">
+            <div><label>Year *</label><input name="year" required inputmode="numeric" placeholder="2019"></div>
+            <div><label>Make *</label><input name="make" required placeholder="Chevrolet"></div>
+            <div><label>Model *</label><input name="model" required placeholder="Malibu"></div>
+            <div><label>Trim</label><input name="trim" placeholder="LT"></div>
+            <div><label>Price ($) *</label><input name="price" required inputmode="numeric" placeholder="13995"></div>
+            <div><label>Mileage *</label><input name="mileage" required inputmode="numeric" placeholder="68420"></div>
+            <div><label>Body Style</label>
+              <select name="bodyStyle"><option>Sedan</option><option>SUV</option><option>Truck</option><option>Van</option><option>Coupe</option><option>Hatchback</option><option>Wagon</option><option>Convertible</option></select>
+            </div>
+            <div><label>Drivetrain</label>
+              <select name="drivetrain"><option>FWD</option><option>RWD</option><option>AWD</option><option>4WD</option></select>
+            </div>
+            <div><label>Transmission</label>
+              <select name="transmission"><option>Automatic</option><option>Manual</option><option>CVT</option></select>
+            </div>
+            <div><label>Engine</label><input name="engine" placeholder="1.5L Turbo I4"></div>
+            <div><label>Exterior Color</label><input name="exteriorColor" placeholder="Summit White"></div>
+            <div><label>Interior Color</label><input name="interiorColor" placeholder="Jet Black"></div>
+            <div><label>MPG City</label><input name="mpgCity" inputmode="numeric" placeholder="29"></div>
+            <div><label>MPG Highway</label><input name="mpgHwy" inputmode="numeric" placeholder="36"></div>
+            <div><label>VIN</label><input name="vin" maxlength="17" placeholder="17 characters"></div>
+            <div><label>Stock #</label><input name="stock" placeholder="A1013"></div>
+            <div class="full"><label>Description</label><textarea name="description" placeholder="A couple sentences buyers will read on the car's page"></textarea></div>
+            <div class="full"><label>Features (comma separated)</label><input name="features" placeholder="Backup Camera, Heated Seats, Bluetooth"></div>
+            <div class="full">
+              <label>Photos</label>
+              <div class="drop-zone" id="drop-zone">📷 Drop photos here or click to choose files<br><small>They're resized automatically. First photo is the main one.</small></div>
+              <input type="file" id="file-input" accept="image/*" multiple hidden>
+              <div class="photo-thumbs" id="photo-thumbs"></div>
+            </div>
+            <div><label style="display:flex;gap:8px;align-items:center"><input type="checkbox" name="featured" style="width:16px;height:16px"> Featured on homepage</label></div>
+            <div><label style="display:flex;gap:8px;align-items:center"><input type="checkbox" name="sold" style="width:16px;height:16px"> Sold</label></div>
+          </div>
+          <div style="display:flex;gap:10px;margin-top:18px;flex-wrap:wrap">
+            <button class="btn btn-primary" type="submit" id="btn-save">Save Car</button>
+            <button class="btn btn-ghost" type="button" id="btn-cancel">Cancel</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    </div><!-- /view-inventory -->
+
+    <div id="view-apps" hidden>
+      <div class="admin-head">
+        <h1>Credit Applications (<span id="apps-count">0</span>)</h1>
+      </div>
+      <div class="form-note" id="apps-config-note" style="margin-bottom:16px">
+        <strong>Showing sample applications.</strong> To receive real ones, point the credit app at your
+        secure endpoint (<code>CREDIT_APP_ENDPOINT</code> in <code>js/site.js</code>) and set
+        <code>CREDIT_APPS_FEED</code> below to that system's list URL. The contract is in the README —
+        any backend that accepts a POST and returns a JSON list plugs straight in.
+      </div>
+      <div class="admin-list" id="apps-list"></div>
+    </div>
+
+    <div class="form-note" style="max-width:760px;margin-top:26px">
+      <strong>How updates go live:</strong> add or edit cars here, then click <strong>Download inventory.js</strong> and replace the file at <code>data/inventory.js</code> in the site folder (then re-deploy / re-drag to Netlify). Your work is auto-saved in this browser until you download. This page is for the dealership — don't link to it from the public site.
+    </div>
+  </div>
+
+  <script src="data/inventory.js"></script>
+  <script src="js/admin.js"></script>
+</body>
+</html>

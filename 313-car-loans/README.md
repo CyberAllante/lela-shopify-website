@@ -78,6 +78,26 @@ Adding a car is copy-pasting a block and changing the fields. Down the road you
 can generate it from any DMS export (Frazer, DealerCenter, Wayne Reaves and
 Dealer Car Search can all export CSV inventory feeds).
 
+## Managing inventory WITHOUT Dealer Car Search (admin.html)
+
+`admin.html` is the dealership's own back office — the "super easy way to add
+cars." Open it in any browser (it's in the site folder; not linked from the
+public pages):
+
+1. **+ Add a Car** → fill the form → drag photos in (auto-resized) → Save
+2. Toggle **Featured** / **Sold**, edit or delete from the list
+3. Click **Download inventory.js** → replace `data/inventory.js` → re-deploy
+
+Work autosaves in the browser until downloaded. No accounts, no server, no
+monthly fee. When you build your own automations later, the contract stays the
+same: anything that writes `data/inventory.js` (a cron job, a DMS export
+converter, a phone app) updates the whole site.
+
+What Dealer Car Search still does that this doesn't (yet): syndication to
+Facebook Marketplace / Craigslist / CarGurus, lead CRM, and hosted secure
+credit-app processing. Keep those in mind before the dealership cancels — the
+site is ready to plug into replacements whenever the automations exist.
+
 ## Deploying free on GitHub Pages
 
 1. Push this folder to a GitHub repo.
