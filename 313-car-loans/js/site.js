@@ -39,14 +39,17 @@
     return (principal * r) / (1 - Math.pow(1 + r, -months));
   }
 
+  var PLACEHOLDER = "assets/placeholder-sedan.svg";
+  var IMG_FALLBACK = ' onerror="this.onerror=null;this.src=\'' + PLACEHOLDER + '\'"';
+
   function cardHTML(v) {
-    var img = (v.images && v.images[0]) || "assets/placeholder-sedan.svg";
+    var img = (v.images && v.images[0]) || PLACEHOLDER;
     var tag = v.featured ? '<span class="tag">Featured</span>' : "";
     if (v.sold) tag = '<span class="tag sold">Sold</span>';
     return (
       '<a class="vehicle-card" href="vehicle.html?id=' + encodeURIComponent(v.id) + '">' +
         '<div class="vehicle-photo">' + tag +
-          '<img src="' + img + '" alt="' + title(v) + '" loading="lazy">' +
+          '<img src="' + img + '" alt="' + title(v) + '" loading="lazy"' + IMG_FALLBACK + '>' +
         "</div>" +
         '<div class="vehicle-body">' +
           '<div class="vehicle-title">' + title(v) + "</div>" +
@@ -217,7 +220,7 @@
 
     document.title = title(v) + " | Matthew's Stop and Look Auto Sales";
 
-    var imgs = v.images && v.images.length ? v.images : ["assets/placeholder-sedan.svg"];
+    var imgs = v.images && v.images.length ? v.images : [PLACEHOLDER];
     var phone = DATA.dealership.phone || "313-891-8000";
     var phoneHref = DATA.dealership.phoneHref || "tel:+13138918000";
 
@@ -225,11 +228,11 @@
       '<a class="vdp-back" href="inventory.html">\u2190 Return to Inventory</a>' +
       '<div class="vdp-layout">' +
         "<div>" +
-          '<div class="gallery-main"><img id="gallery-main-img" src="' + imgs[0] + '" alt="' + title(v) + '"></div>' +
+          '<div class="gallery-main"><img id="gallery-main-img" src="' + imgs[0] + '" alt="' + title(v) + '"' + IMG_FALLBACK + '></div>' +
           (imgs.length > 1
             ? '<div class="gallery-thumbs">' +
               imgs.map(function (src, i) {
-                return '<button data-i="' + i + '"' + (i === 0 ? ' class="active"' : "") + '><img src="' + src + '" alt="Photo ' + (i + 1) + '" loading="lazy"></button>';
+                return '<button data-i="' + i + '"' + (i === 0 ? ' class="active"' : "") + '><img src="' + src + '" alt="Photo ' + (i + 1) + '" loading="lazy"' + IMG_FALLBACK + '></button>';
               }).join("") +
               "</div>"
             : "") +

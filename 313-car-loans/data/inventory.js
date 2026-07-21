@@ -9,6 +9,9 @@
  * The scraper rewrites this file from the live 313carloans.com inventory.
  * You can also edit vehicles by hand — it's plain data, no build step needed.
  *
+ * NOTE: vehicle photos are AI-generated stand-ins (Higgsfield) hotlinked from
+ * its CDN — the scraper replaces them with the dealership's real photos.
+ *
  * Loaded as a plain <script> (not fetch) so the site also works when opened
  * directly from disk (file://) without a web server.
  */
@@ -33,7 +36,7 @@ window.INVENTORY = {
       vin: "", stock: "A1001",
       description: "Clean one-owner Malibu LT with backup camera, Apple CarPlay / Android Auto, and remote start. Fresh oil change and full inspection.",
       features: ["Backup Camera", "Apple CarPlay", "Remote Start", "Alloy Wheels", "Bluetooth"],
-      images: ["assets/placeholder-sedan.svg"],
+      images: ["https://d8j0ntlcm91z4.cloudfront.net/user_3F5HWbv7Bu2aaFUxJxfa9tx8cxS/hf_20260721_201856_ed53a64d-29d4-472a-a88d-0d62c6bc6244_min.webp"],
       featured: true, sold: false
     },
     {
@@ -46,7 +49,7 @@ window.INVENTORY = {
       vin: "", stock: "A1002",
       description: "AWD Escape SE — perfect for Michigan winters. Heated seats, power liftgate, and new tires all around.",
       features: ["AWD", "Heated Seats", "Power Liftgate", "New Tires", "Keyless Entry"],
-      images: ["assets/placeholder-suv.svg"],
+      images: ["https://d8j0ntlcm91z4.cloudfront.net/user_3F5HWbv7Bu2aaFUxJxfa9tx8cxS/hf_20260721_201857_651a250b-718a-4939-b48f-1876f41300d3_min.webp"],
       featured: true, sold: false
     },
     {
@@ -59,7 +62,7 @@ window.INVENTORY = {
       vin: "", stock: "A1003",
       description: "4x4 Grand Cherokee Laredo with tow package, big touchscreen, and a strong V6. Runs and drives excellent.",
       features: ["4x4", "Tow Package", "Touchscreen", "Cruise Control", "Fog Lights"],
-      images: ["assets/placeholder-suv.svg"],
+      images: ["https://d8j0ntlcm91z4.cloudfront.net/user_3F5HWbv7Bu2aaFUxJxfa9tx8cxS/hf_20260721_201859_22bc1e8b-ac6e-421d-8be1-1191d6b7ded9_min.webp"],
       featured: true, sold: false
     },
     {
@@ -72,7 +75,7 @@ window.INVENTORY = {
       vin: "", stock: "A1004",
       description: "Detroit classic. Leather, heated seats, premium sound. Sharp black-on-beige combo that turns heads.",
       features: ["Leather Seats", "Heated Seats", "Premium Audio", "Push-Button Start"],
-      images: ["assets/placeholder-sedan.svg"],
+      images: ["https://d8j0ntlcm91z4.cloudfront.net/user_3F5HWbv7Bu2aaFUxJxfa9tx8cxS/hf_20260721_201900_58de559d-3820-404c-9e2b-498c043ddca8_min.webp"],
       featured: false, sold: false
     },
     {
@@ -85,7 +88,7 @@ window.INVENTORY = {
       vin: "", stock: "A1005",
       description: "Work-ready F-150 XLT 4x4 with the 5.0 V8. Crew cab seats five, bed liner included, tows with confidence.",
       features: ["4x4", "V8", "Crew Cab", "Bed Liner", "Trailer Hitch"],
-      images: ["assets/placeholder-truck.svg"],
+      images: ["https://d8j0ntlcm91z4.cloudfront.net/user_3F5HWbv7Bu2aaFUxJxfa9tx8cxS/hf_20260721_201902_daf48ce3-febd-4be0-8930-8902acc0c4b6_min.webp"],
       featured: true, sold: false
     },
     {
@@ -98,7 +101,7 @@ window.INVENTORY = {
       vin: "", stock: "A1006",
       description: "Fuel-efficient Equinox LS with backup camera and touchscreen. Great first car or family runabout.",
       features: ["Backup Camera", "Touchscreen", "Bluetooth", "Steering Wheel Controls"],
-      images: ["assets/placeholder-suv.svg"],
+      images: ["https://d8j0ntlcm91z4.cloudfront.net/user_3F5HWbv7Bu2aaFUxJxfa9tx8cxS/hf_20260721_201902_e8d748a1-9fdd-469d-8ad2-157c39e710a4_min.webp"],
       featured: false, sold: false
     },
     {
@@ -111,7 +114,7 @@ window.INVENTORY = {
       vin: "", stock: "A1007",
       description: "Aggressive-looking Charger SXT with sport seats and big-screen Uconnect. Well maintained, ready to roll.",
       features: ["Sport Seats", "Uconnect", "Dual Exhaust", "Alloy Wheels"],
-      images: ["assets/placeholder-sedan.svg"],
+      images: ["https://d8j0ntlcm91z4.cloudfront.net/user_3F5HWbv7Bu2aaFUxJxfa9tx8cxS/hf_20260721_201909_48464353-a067-4ed2-97e9-3f281c5ecc1c_min.webp"],
       featured: false, sold: false
     },
     {
@@ -124,7 +127,7 @@ window.INVENTORY = {
       vin: "", stock: "A1008",
       description: "Roomy Terrain SLE with Pioneer sound and rear camera. Solid, comfortable, and easy on gas.",
       features: ["Pioneer Audio", "Backup Camera", "Roof Rails", "Power Seat"],
-      images: ["assets/placeholder-suv.svg"],
+      images: ["https://d8j0ntlcm91z4.cloudfront.net/user_3F5HWbv7Bu2aaFUxJxfa9tx8cxS/hf_20260721_201911_277f5395-7ea9-4c61-bdf6-ea0434ef8f21_min.webp"],
       featured: false, sold: false
     },
     {
@@ -137,7 +140,7 @@ window.INVENTORY = {
       vin: "", stock: "A1009",
       description: "Three rows of leather comfort. AWD Enclave with heated seats, remote start, and room for seven.",
       features: ["Third Row", "Leather Seats", "AWD", "Heated Seats", "Remote Start"],
-      images: ["assets/placeholder-suv.svg"],
+      images: ["https://d8j0ntlcm91z4.cloudfront.net/user_3F5HWbv7Bu2aaFUxJxfa9tx8cxS/hf_20260721_201912_c611ecda-6c32-49f5-a04d-6db37b59c3c0_min.webp"],
       featured: false, sold: false
     },
     {
@@ -150,7 +153,7 @@ window.INVENTORY = {
       vin: "", stock: "A1010",
       description: "Sharp blue Fusion SE with SYNC 3, lane-keep assist, and adaptive cruise. Drives like new.",
       features: ["SYNC 3", "Lane-Keep Assist", "Adaptive Cruise", "Backup Camera"],
-      images: ["assets/placeholder-sedan.svg"],
+      images: ["https://d8j0ntlcm91z4.cloudfront.net/user_3F5HWbv7Bu2aaFUxJxfa9tx8cxS/hf_20260721_201914_a3c8589d-ae7c-4819-9809-8a059bac3afc_min.webp"],
       featured: false, sold: false
     },
     {
@@ -163,7 +166,7 @@ window.INVENTORY = {
       vin: "", stock: "A1011",
       description: "Budget-friendly full-size Impala LT. Smooth V6, cold A/C, big trunk. Cash-friendly price.",
       features: ["V6", "Cold A/C", "Power Windows", "Cruise Control"],
-      images: ["assets/placeholder-sedan.svg"],
+      images: ["https://d8j0ntlcm91z4.cloudfront.net/user_3F5HWbv7Bu2aaFUxJxfa9tx8cxS/hf_20260721_201916_95002857-004f-48b5-8504-2722fdb066b1_min.webp"],
       featured: false, sold: false
     },
     {
@@ -176,7 +179,7 @@ window.INVENTORY = {
       vin: "", stock: "A1012",
       description: "Affordable 7-passenger Journey SE. Flexible seating, hidden storage, and an easy monthly payment.",
       features: ["Third Row", "Hidden Storage", "Keyless Entry", "Bluetooth"],
-      images: ["assets/placeholder-suv.svg"],
+      images: ["https://d8j0ntlcm91z4.cloudfront.net/user_3F5HWbv7Bu2aaFUxJxfa9tx8cxS/hf_20260721_201916_cc0664c2-143b-4798-81a0-7aa35912dd83_min.webp"],
       featured: false, sold: false
     }
   ]
