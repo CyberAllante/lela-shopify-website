@@ -247,9 +247,9 @@
             '<div class="vdp-price">' + money(v.price) + "</div>" +
             '<div class="vdp-payment">est. ' + money(Math.round(estMonthly(v.price))) + "/mo* with 10% down</div>" +
             '<div class="vdp-actions">' +
-              '<a class="btn btn-primary btn-block" href="https://313carloans.com/creditapp" target="_blank" rel="noopener">Apply For Credit</a>' +
+              '<a class="btn btn-primary btn-block" href="creditapp.html?vehicle=' + encodeURIComponent(v.id) + '">Apply For Credit</a>' +
               '<a class="btn btn-dark btn-block" href="' + phoneHref + '">Call ' + phone + "</a>" +
-              '<a class="btn btn-ghost btn-block" href="sms:+13138918000">💬 Text Us About This Car</a>' +
+              '<a class="btn btn-ghost btn-block" href="sms:+13138918000"><svg class="svg-i" style="width:18px;height:18px"><use href="#i-chat"/></svg> Text Us About This Car</a>' +
               '<a class="btn btn-ghost btn-block" href="financing.html?vehicle=' + encodeURIComponent(title(v)) + "#trade" + '">Value My Trade-In</a>' +
             "</div>" +
             '<table class="spec-table">' +
@@ -347,6 +347,89 @@
     });
   }
 
+  /* ---------- credit application ---------- */
+
+  // Where the credit app POSTs on submit. MUST be an HTTPS endpoint that
+  // handles applicant data securely (this form includes SSN/DOB — never
+  // wire it to email or a plain form service). Until it's set, submissions
+  // show a call/text fallback and nothing leaves the visitor's browser.
+  var CREDIT_APP_ENDPOINT = "";
+
+  function initCreditApp() {
+    // Vehicle picker fed by live inventory; details auto-fill like the
+    // original Dealer Car Search app.
+    var sel = $("#va-select");
+    VEHICLES.forEach(function (v) {
+      var opt = document.createElement("option");
+      opt.value = v.id;
+      opt.textContent = title(v) + " — " + money(v.price);
+      sel.appendChild(opt);
+    });
+    var other = document.createElement("option");
+    other.value = "other";
+    other.textContent = "Not sure yet — help me pick";
+    sel.appendChild(other);
+
+    function fillVehicle() {
+      var v = VEHICLES.filter(function (x) { return x.id === sel.value; })[0];
+      $("#va-stock").value = v ? (v.stock || "") : "";
+      $("#va-year").value = v ? v.year : "";
+      $("#va-make").value = v ? v.make : "";
+      $("#va-model").value = v ? v.model : "";
+      $("#va-trim").value = v ? (v.trim || "") : "";
+      $("#va-vin").value = v ? (v.vin || "") : "";
+      $("#va-mileage").value = v ? v.mileage.toLocaleString("en-US") : "";
+    }
+    sel.addEventListener("change", fillVehicle);
+    var wanted = new URLSearchParams(window.location.search).get("vehicle");
+    if (wanted) { sel.value = wanted; if (sel.value !== wanted) sel.value = ""; fillVehicle(); }
+
+    // Co-buyer toggle
+    var cbBtn = $("#add-cobuyer");
+    var cbFields = $("#cobuyer-fields");
+    cbBtn.addEventListener("click", function () {
+      var open = cbFields.style.display !== "none";
+      cbFields.style.display = open ? "none" : "block";
+      cbBtn.textContent = open ? "+ Add Co-Buyer" : "− Remove Co-Buyer";
+    });
+
+    // SSN formatting: ###-##-####
+    var ssn = $("#ca-ssn");
+    ssn.addEventListener("input", function () {
+      var d = ssn.value.replace(/\D/g, "").slice(0, 9);
+      ssn.value = d.length > 5 ? d.slice(0, 3) + "-" + d.slice(3, 5) + "-" + d.slice(5)
+        : d.length > 3 ? d.slice(0, 3) + "-" + d.slice(3) : d;
+    });
+
+    $("#creditapp-form").addEventListener("submit", function (e) {
+      e.preventDefault();
+      if (!CREDIT_APP_ENDPOINT) {
+        var n = $("#creditapp-notice");
+        n.classList.add("show");
+        n.scrollIntoView({ behavior: "smooth", block: "center" });
+        return;
+      }
+      var data = {};
+      $all("input, select, textarea", e.target).forEach(function (f) {
+        if (f.name) data[f.name] = f.type === "checkbox" ? f.checked : f.value;
+      });
+      fetch(CREDIT_APP_ENDPOINT, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data)
+      }).then(function (r) {
+        if (!r.ok) throw new Error("HTTP " + r.status);
+        $("#creditapp-success").style.display = "block";
+        $("#creditapp-success").scrollIntoView({ behavior: "smooth", block: "center" });
+        e.target.reset();
+      }).catch(function () {
+        var n = $("#creditapp-notice");
+        n.classList.add("show");
+        n.scrollIntoView({ behavior: "smooth", block: "center" });
+      });
+    });
+  }
+
   /* ---------- boot ---------- */
 
   document.addEventListener("DOMContentLoaded", function () {
@@ -356,5 +439,6 @@
     if (page === "inventory") initInventory();
     if (page === "vehicle") initVehicle();
     if (page === "financing") initFinancing();
+    if (page === "creditapp") initCreditApp();
   });
 })();

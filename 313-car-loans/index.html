@@ -27,6 +27,23 @@
   </script>
 </head>
 <body data-page="home">
+  <svg xmlns="http://www.w3.org/2000/svg" style="display:none" aria-hidden="true">
+    <symbol id="i-check-octagon" viewBox="0 0 24 24"><path d="M7.5 2h9L22 7.5v9L16.5 22h-9L2 16.5v-9L7.5 2Z"/><path d="m8 12.2 2.8 2.8 5.7-5.7"/></symbol>
+    <symbol id="i-id" viewBox="0 0 24 24"><rect x="2" y="5" width="20" height="14" rx="2"/><circle cx="8.5" cy="10.5" r="2"/><path d="M5.2 16.8c.7-2 1.9-3 3.3-3s2.6 1 3.3 3"/><path d="M15 10h4M15 13.5h4"/></symbol>
+    <symbol id="i-cash" viewBox="0 0 24 24"><rect x="2" y="6" width="20" height="12" rx="2"/><circle cx="12" cy="12" r="2.6"/><path d="M5.5 9.5h.01M18.5 14.5h.01"/></symbol>
+    <symbol id="i-trade" viewBox="0 0 24 24"><path d="M4 9a8.5 8.5 0 0 1 14.5-3.5L20 7"/><path d="M20 2.5V7h-4.5"/><path d="M20 15a8.5 8.5 0 0 1-14.5 3.5L4 17"/><path d="M4 21.5V17h4.5"/></symbol>
+    <symbol id="i-search" viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m15.3 15.3 5.7 5.7"/></symbol>
+    <symbol id="i-talk" viewBox="0 0 24 24"><path d="M22 6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v14.5l4.5-3.5H20a2 2 0 0 0 2-2V6Z"/><path d="m8.5 10.2 2.4 2.4 4.6-4.8"/></symbol>
+    <symbol id="i-home" viewBox="0 0 24 24"><path d="m3 11 9-8 9 8"/><path d="M5 10v10h5v-6h4v6h5V10"/></symbol>
+    <symbol id="i-pin" viewBox="0 0 24 24"><path d="M12 21.5c-4.5-4.2-7-7.7-7-10.8a7 7 0 0 1 14 0c0 3.1-2.5 6.6-7 10.8Z"/><circle cx="12" cy="10.3" r="2.5"/></symbol>
+    <symbol id="i-phone" viewBox="0 0 24 24"><path d="M4.8 3h3.7L10 7.5 7.8 9.2a13.5 13.5 0 0 0 7 7l1.7-2.2 4.5 1.5v3.7a1.8 1.8 0 0 1-2 1.8A17 17 0 0 1 3 5a1.8 1.8 0 0 1 1.8-2Z"/></symbol>
+    <symbol id="i-chat" viewBox="0 0 24 24"><path d="M22 6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v15l5-4h13a2 2 0 0 0 2-2V6Z"/><path d="M7.5 9.7h.01M12 9.7h.01M16.5 9.7h.01"/></symbol>
+    <symbol id="i-lock" viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></symbol>
+    <symbol id="i-check-circle" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9.5"/><path d="m8 12.3 2.7 2.7 5.3-5.5"/></symbol>
+    <symbol id="i-fb" viewBox="0 0 24 24"><path style="fill:currentColor;stroke:none" d="M13.4 21.5v-7.2h2.4l.4-2.9h-2.8V9.5c0-.9.3-1.5 1.6-1.5h1.3V5.4c-.6-.1-1.4-.2-2.3-.2-2.3 0-3.9 1.4-3.9 4v2.2H7.9v2.9h2.2v7.2h3.3Z"/></symbol>
+    <symbol id="i-gg" viewBox="0 0 24 24"><path d="M20.5 12a8.5 8.5 0 1 1-2.5-6"/><path d="M20.5 12h-8.2"/></symbol>
+  </svg>
+
 
   <div class="topbar">
     <div class="container">
@@ -47,11 +64,11 @@
         <a href="inventory.html" data-nav="inventory">Inventory</a>
         <a href="financing.html" data-nav="financing">Financing</a>
         <a href="about.html" data-nav="about">About &amp; Visit</a>
-        <a class="nav-apply" href="https://313carloans.com/creditapp" target="_blank" rel="noopener">Apply For Credit</a>
+        <a class="nav-apply" href="creditapp.html" data-nav="creditapp">Apply For Credit</a>
       </nav>
       <div class="header-cta">
-        <a class="call-btn sms-btn" href="sms:+13138918000">💬 Text Us</a>
-        <a class="call-btn" href="tel:+13138918000">📞 313-891-8000</a>
+        <a class="call-btn sms-btn" href="sms:+13138918000"><svg class="svg-i"><use href="#i-chat"/></svg> Text Us</a>
+        <a class="call-btn" href="tel:+13138918000"><svg class="svg-i"><use href="#i-phone"/></svg> 313-891-8000</a>
         <button class="nav-toggle" aria-label="Menu" aria-controls="main-nav">☰</button>
       </div>
     </div>
@@ -64,7 +81,7 @@
         <h1>Stop. Look. <em>Drive home today.</em></h1>
         <p class="lead">All credit approved — all you need is a <strong>State ID</strong>. Quality used cars, trucks &amp; SUVs at 8 Mile &amp; Van Dyke, with $0 down options available.</p>
         <div class="hero-actions">
-          <a class="btn btn-primary" href="https://313carloans.com/creditapp" target="_blank" rel="noopener">Apply For Credit</a>
+          <a class="btn btn-primary" href="creditapp.html">Apply For Credit</a>
           <a class="btn btn-outline" href="inventory.html">View All Inventory</a>
         </div>
       </div>
@@ -100,10 +117,10 @@
 
   <section class="trust-strip">
     <div class="container trust-grid">
-      <div class="trust-item"><span class="icon">✅</span><div><strong>Guaranteed Approved Financing</strong><span>Good, bad, or no credit — you're approved</span></div></div>
-      <div class="trust-item"><span class="icon">🪪</span><div><strong>All You Need Is a State ID</strong><span>Bring your ID, drive home today</span></div></div>
-      <div class="trust-item"><span class="icon">💵</span><div><strong>$0 Down Options</strong><span>Flexible down payments that fit your budget</span></div></div>
-      <div class="trust-item"><span class="icon">🔁</span><div><strong>Sell or Trade Your Car</strong><span>Any make, any model, any condition</span></div></div>
+      <div class="trust-item"><span class="icon"><svg class="svg-i"><use href="#i-check-octagon"/></svg></span><div><strong>Guaranteed Approved Financing</strong><span>Good, bad, or no credit — you're approved</span></div></div>
+      <div class="trust-item"><span class="icon"><svg class="svg-i"><use href="#i-id"/></svg></span><div><strong>All You Need Is a State ID</strong><span>Bring your ID, drive home today</span></div></div>
+      <div class="trust-item"><span class="icon"><svg class="svg-i"><use href="#i-cash"/></svg></span><div><strong>$0 Down Options</strong><span>Flexible down payments that fit your budget</span></div></div>
+      <div class="trust-item"><span class="icon"><svg class="svg-i"><use href="#i-trade"/></svg></span><div><strong>Sell or Trade Your Car</strong><span>Any make, any model, any condition</span></div></div>
     </div>
   </section>
 
@@ -135,13 +152,13 @@
         <div class="finance-cta">
           <div class="big">YES.</div>
           <div>That's our favorite answer.</div>
-          <a class="btn btn-primary" href="https://313carloans.com/creditapp" target="_blank" rel="noopener">Apply For Credit Now</a>
+          <a class="btn btn-primary" href="creditapp.html">Apply For Credit Now</a>
         </div>
       </div>
     </div>
   </section>
 
-  <section class="section">
+  <section class="section" id="reviews">
     <div class="container">
       <div class="section-head">
         <div>
@@ -201,11 +218,13 @@
     <div class="container">
       <div class="footer-grid">
         <div class="footer-about">
-          <a class="brand" href="index.html">
-            <img class="brand-logo" src="assets/logo.png" alt="Matthew's Stop &amp; Look Auto Sales logo">
-            <span class="brand-name" style="color:#fff">Matthew's Stop &amp; Look<small>Auto Sales · Detroit</small></span>
-          </a>
-          <p>Family-owned and serving Detroit for over 18 years. Quality used vehicles and financing that meets you where you are.</p>
+          <img class="footer-logo" src="assets/logo.png" alt="Matthew's Stop &amp; Look Auto Sales logo">
+          <p>Family-owned on the corner of E 8 Mile &amp; Van Dyke, serving Detroit for over 18 years. Quality used vehicles and guaranteed approved financing.</p>
+          <div class="social-row">
+            <a class="social-btn" href="https://www.facebook.com/stopandlookauto" target="_blank" rel="noopener" aria-label="Facebook"><svg class="svg-i"><use href="#i-fb"/></svg></a>
+            <a class="social-btn" href="https://maps.google.com/?q=Matthew's+Stop+and+Look+Auto+Sales+8146+E+8+Mile+Rd+Detroit+MI" target="_blank" rel="noopener" aria-label="Google"><svg class="svg-i"><use href="#i-gg"/></svg></a>
+            <a class="social-btn" href="sms:+13138918000" aria-label="Text us"><svg class="svg-i"><use href="#i-chat"/></svg></a>
+          </div>
         </div>
         <div>
           <h4>Shop</h4>
@@ -219,24 +238,21 @@
         <div>
           <h4>Buyers</h4>
           <ul>
-            <li><a href="https://313carloans.com/creditapp" target="_blank" rel="noopener">Apply For Credit</a></li>
-            <li><a href="financing.html">Financing Info</a></li>
-            <li><a href="financing.html#trade">Trade-In Your Car</a></li>
-            <li><a href="about.html">About Us</a></li>
-            <li><a href="about.html#visit">Directions &amp; Hours</a></li>
+            <li><a href="creditapp.html">Apply For Credit</a></li>
+            <li><a href="financing.html">Financing &amp; Trade-In</a></li>
+            <li><a href="about.html">About &amp; Visit Us</a></li>
+            <li><a href="index.html#reviews">Customer Reviews</a></li>
           </ul>
         </div>
-        <div>
-          <h4>Contact</h4>
-          <ul>
-            <li><a href="tel:+13138918000">313-891-8000</a></li>
-            <li>8146 E 8 Mile Rd</li>
-            <li>Detroit, MI 48234</li>
-          </ul>
+        <div class="footer-review">
+          <h4>Drivers Love Us</h4>
+          <div class="stars">★★★★★</div>
+          <p>“Hands down the best dealership in Detroit. Just bought my second car from up here. Check them out — you won't find a more caring and professional car dealer. Thank you to everyone at Stop &amp; Look!”</p>
+          <strong style="color:#fff;font-size:13px">— Jarmare Durrell · Verified Facebook review</strong>
         </div>
       </div>
       <div class="footer-bottom">
-        <span>© <span id="footer-year"></span> McQueen Auto, Inc. DBA Matthew's Stop and Look Auto Sales</span>
+        <span>© <span id="footer-year"></span> McQueen Auto, Inc. DBA Matthew's Stop and Look Auto Sales · 8146 E 8 Mile Rd, Detroit, MI 48234 · <a href="tel:+13138918000">313-891-8000</a></span>
         <span>All vehicle prices exclude tax, title, plates &amp; doc fees.</span>
       </div>
     </div>
