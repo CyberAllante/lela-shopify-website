@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" role="img" aria-label="Stop and Look Auto Sales">
+  <!-- Stop-sign octagon: red face, white inner border, like the real thing -->
+  <polygon points="35,2 85,2 118,35 118,85 85,118 35,118 2,85 2,35" fill="#c1121f"/>
+  <polygon points="38,9 82,9 111,38 111,82 82,111 38,111 9,82 9,38" fill="none" stroke="#ffffff" stroke-width="5"/>
+  <text x="60" y="66" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="30" font-weight="900" fill="#ffffff" letter-spacing="1">STOP</text>
+  <text x="60" y="88" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="15" font-weight="700" fill="#ffffff" letter-spacing="3">&amp; LOOK</text>
+</svg>

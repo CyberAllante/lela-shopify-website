@@ -1,17 +1,20 @@
 /* ============================================================
    Matthew's Stop and Look Auto Sales — site styles
    Zero dependencies: no frameworks, no external fonts.
-   Palette: deep navy base, amber CTA accent, clean white cards.
+   Brand: the STOP sign. Stop-sign red + white + asphalt black.
    ============================================================ */
 
 :root {
-  --navy-900: #0b1526;
-  --navy-800: #101e36;
-  --navy-700: #16294a;
-  --navy-100: #e8edf5;
-  --amber-500: #f5a623;
-  --amber-600: #e0920f;
-  --red-600: #d7263d;
+  --dark-900: #121316;
+  --dark-800: #1a1c21;
+  --dark-700: #24272e;
+  --gray-100: #eef0f4;
+  --brand-600: #c1121f;   /* stop-sign red */
+  --brand-700: #9d0e19;   /* hover red */
+  --brand-bright: #ff4d55; /* red that pops on dark backgrounds */
+  --brand-soft: #ff959b;   /* readable red for small text on dark */
+  --red-600: #c1121f;
+  --gold: #f5b301;         /* review stars only */
   --ink: #1b2430;
   --ink-soft: #55617a;
   --line: #dde3ee;
@@ -19,8 +22,8 @@
   --card: #ffffff;
   --green-600: #1e9e5a;
   --radius: 14px;
-  --shadow: 0 2px 10px rgba(11, 21, 38, 0.08);
-  --shadow-lift: 0 12px 28px rgba(11, 21, 38, 0.16);
+  --shadow: 0 2px 10px rgba(18, 19, 22, 0.08);
+  --shadow-lift: 0 12px 28px rgba(18, 19, 22, 0.16);
   --font: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue",
     Arial, sans-serif;
 }
@@ -53,32 +56,32 @@ a { color: inherit; text-decoration: none; }
   white-space: nowrap;
 }
 .btn:hover { transform: translateY(-2px); box-shadow: var(--shadow-lift); }
-.btn-primary { background: var(--amber-500); color: var(--navy-900); }
-.btn-primary:hover { background: var(--amber-600); }
-.btn-dark { background: var(--navy-800); color: #fff; }
+.btn-primary { background: var(--brand-600); color: #fff; }
+.btn-primary:hover { background: var(--brand-700); }
+.btn-dark { background: var(--dark-800); color: #fff; }
 .btn-outline {
   background: transparent; color: #fff;
   border: 2px solid rgba(255, 255, 255, 0.55);
 }
 .btn-outline:hover { border-color: #fff; background: rgba(255, 255, 255, 0.08); }
-.btn-ghost { background: var(--navy-100); color: var(--navy-800); }
+.btn-ghost { background: var(--gray-100); color: var(--dark-800); }
 .btn-block { width: 100%; }
 .btn-sm { padding: 9px 18px; font-size: 14px; }
 
 /* ---------- Top bar + header ---------- */
 
 .topbar {
-  background: var(--navy-900); color: #cfd8e8;
+  background: var(--dark-900); color: #cfd8e8;
   font-size: 13px; padding: 7px 0;
 }
 .topbar .container {
   display: flex; justify-content: space-between; align-items: center; gap: 12px;
 }
-.topbar a { color: var(--amber-500); font-weight: 700; }
+.topbar a { color: var(--brand-soft); font-weight: 700; }
 .topbar .hours { opacity: 0.9; }
 
 .site-header {
-  background: var(--navy-800); color: #fff;
+  background: var(--dark-800); color: #fff;
   position: sticky; top: 0; z-index: 50;
   box-shadow: 0 2px 12px rgba(0, 0, 0, 0.25);
 }
@@ -88,11 +91,8 @@ a { color: inherit; text-decoration: none; }
 }
 
 .brand { display: flex; align-items: center; gap: 12px; }
-.brand-badge {
-  background: var(--amber-500); color: var(--navy-900);
-  font-weight: 900; font-size: 20px; letter-spacing: -0.5px;
-  border-radius: 10px; padding: 6px 10px; line-height: 1;
-}
+.brand-logo { height: 48px; width: 48px; flex: 0 0 auto;
+  filter: drop-shadow(0 2px 5px rgba(0, 0, 0, 0.4)); }
 .brand-name { font-weight: 800; font-size: 17px; line-height: 1.2; }
 .brand-name small {
   display: block; font-weight: 600; font-size: 11.5px;
@@ -105,16 +105,16 @@ a { color: inherit; text-decoration: none; }
   padding: 6px 2px; border-bottom: 2px solid transparent;
   transition: color 0.15s ease, border-color 0.15s ease;
 }
-.main-nav a:hover, .main-nav a.active { color: #fff; border-color: var(--amber-500); }
+.main-nav a:hover, .main-nav a.active { color: #fff; border-color: var(--brand-600); }
 
 .header-cta { display: flex; align-items: center; gap: 12px; }
 .call-btn {
   display: inline-flex; align-items: center; gap: 8px;
-  background: var(--amber-500); color: var(--navy-900);
+  background: var(--brand-600); color: #fff;
   font-weight: 800; padding: 10px 18px; border-radius: 999px; font-size: 15px;
   transition: background 0.15s ease;
 }
-.call-btn:hover { background: var(--amber-600); }
+.call-btn:hover { background: var(--brand-700); }
 
 .nav-toggle {
   display: none; background: none; border: 0; color: #fff;
@@ -125,13 +125,21 @@ a { color: inherit; text-decoration: none; }
 
 .hero {
   background:
-    radial-gradient(1100px 500px at 85% -10%, rgba(245, 166, 35, 0.18), transparent 60%),
-    linear-gradient(160deg, var(--navy-900) 0%, var(--navy-700) 100%);
+    radial-gradient(1100px 500px at 85% -10%, rgba(193, 18, 31, 0.30), transparent 60%),
+    linear-gradient(160deg, var(--dark-900) 0%, var(--dark-700) 100%);
   color: #fff; padding: 72px 0 96px; position: relative; overflow: hidden;
 }
+.hero::after {
+  /* oversized stop-sign octagon watermark */
+  content: ""; position: absolute; right: -110px; top: -30px;
+  width: 460px; height: 460px; transform: rotate(12deg);
+  background: rgba(193, 18, 31, 0.18);
+  clip-path: polygon(30% 0, 70% 0, 100% 30%, 100% 70%, 70% 100%, 30% 100%);
+}
+.hero .container { position: relative; z-index: 1; }
 .hero-kicker {
-  display: inline-block; background: rgba(245, 166, 35, 0.15);
-  color: var(--amber-500); border: 1px solid rgba(245, 166, 35, 0.4);
+  display: inline-block; background: rgba(193, 18, 31, 0.22);
+  color: var(--brand-soft); border: 1px solid rgba(255, 77, 85, 0.45);
   font-size: 13px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase;
   padding: 6px 14px; border-radius: 999px; margin-bottom: 18px;
 }
@@ -139,7 +147,7 @@ a { color: inherit; text-decoration: none; }
   font-size: clamp(34px, 5.2vw, 56px); line-height: 1.08;
   font-weight: 900; letter-spacing: -1px; max-width: 720px;
 }
-.hero h1 em { color: var(--amber-500); font-style: normal; }
+.hero h1 em { color: var(--brand-bright); font-style: normal; }
 .hero p.lead {
   margin-top: 16px; font-size: clamp(16px, 2vw, 19px);
   color: #c2cddf; max-width: 560px;
@@ -176,7 +184,7 @@ a { color: inherit; text-decoration: none; }
 }
 .trust-item .icon {
   width: 44px; height: 44px; flex: 0 0 44px; border-radius: 11px;
-  background: var(--navy-100); display: grid; place-items: center;
+  background: var(--gray-100); display: grid; place-items: center;
   font-size: 21px;
 }
 .trust-item strong { display: block; font-size: 15px; }
@@ -224,22 +232,22 @@ a { color: inherit; text-decoration: none; }
   display: flex; gap: 8px; flex-wrap: wrap; margin: 12px 0 14px;
 }
 .chip {
-  background: var(--navy-100); color: var(--navy-800);
+  background: var(--gray-100); color: var(--dark-800);
   font-size: 12px; font-weight: 700; padding: 4px 10px; border-radius: 999px;
 }
 .vehicle-foot {
   margin-top: auto; display: flex; align-items: center;
   justify-content: space-between; gap: 10px;
 }
-.price { font-size: 21px; font-weight: 900; color: var(--navy-800); }
+.price { font-size: 21px; font-weight: 900; color: var(--dark-800); }
 .price small { display: block; font-size: 11.5px; font-weight: 600; color: var(--green-600); }
 
 /* ---------- Financing banner ---------- */
 
 .finance-banner {
   background:
-    radial-gradient(800px 300px at 10% 120%, rgba(245, 166, 35, 0.22), transparent 60%),
-    linear-gradient(140deg, var(--navy-800), var(--navy-900));
+    radial-gradient(800px 300px at 10% 120%, rgba(193, 18, 31, 0.30), transparent 60%),
+    linear-gradient(140deg, var(--dark-800), var(--dark-900));
   border-radius: 20px; color: #fff; padding: 44px;
   display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 30px; align-items: center;
 }
@@ -248,13 +256,13 @@ a { color: inherit; text-decoration: none; }
 .finance-banner ul { list-style: none; margin-top: 16px; display: grid; gap: 9px; }
 .finance-banner li { display: flex; gap: 10px; align-items: center; font-weight: 600; }
 .finance-banner li::before {
-  content: "✓"; color: var(--amber-500); font-weight: 900;
-  background: rgba(245, 166, 35, 0.15); border-radius: 50%;
+  content: "✓"; color: var(--brand-soft); font-weight: 900;
+  background: rgba(193, 18, 31, 0.3); border-radius: 50%;
   width: 24px; height: 24px; display: grid; place-items: center; font-size: 13px;
   flex: 0 0 24px;
 }
 .finance-cta { text-align: center; display: grid; gap: 12px; justify-items: center; }
-.finance-cta .big { font-size: 42px; font-weight: 900; color: var(--amber-500); line-height: 1; }
+.finance-cta .big { font-size: 42px; font-weight: 900; color: var(--brand-bright); line-height: 1; }
 
 /* ---------- Reviews ---------- */
 
@@ -263,7 +271,7 @@ a { color: inherit; text-decoration: none; }
   background: var(--card); border-radius: var(--radius); box-shadow: var(--shadow);
   padding: 22px;
 }
-.stars { color: var(--amber-500); font-size: 17px; letter-spacing: 2px; }
+.stars { color: var(--gold); font-size: 17px; letter-spacing: 2px; }
 .review-card p { margin: 12px 0 14px; color: var(--ink-soft); font-size: 15px; }
 .review-card strong { font-size: 14px; }
 
@@ -287,7 +295,7 @@ a { color: inherit; text-decoration: none; }
 /* ---------- Inventory page ---------- */
 
 .page-hero {
-  background: linear-gradient(150deg, var(--navy-900), var(--navy-700));
+  background: linear-gradient(150deg, var(--dark-900), var(--dark-700));
   color: #fff; padding: 44px 0;
 }
 .page-hero h1 { font-size: clamp(28px, 4vw, 40px); font-weight: 900; letter-spacing: -0.7px; }
@@ -344,7 +352,7 @@ a { color: inherit; text-decoration: none; }
   aspect-ratio: 4 / 3; border-radius: 9px; overflow: hidden; cursor: pointer;
   border: 2px solid transparent; padding: 0; background: #dfe6f2;
 }
-.gallery-thumbs button.active { border-color: var(--amber-500); }
+.gallery-thumbs button.active { border-color: var(--brand-600); }
 .gallery-thumbs img { width: 100%; height: 100%; object-fit: cover; }
 
 .vdp-panel {
@@ -353,7 +361,7 @@ a { color: inherit; text-decoration: none; }
 }
 .vdp-panel h1 { font-size: 26px; font-weight: 900; letter-spacing: -0.5px; line-height: 1.15; }
 .vdp-sub { color: var(--ink-soft); margin-top: 6px; font-size: 14.5px; }
-.vdp-price { font-size: 36px; font-weight: 900; color: var(--navy-800); margin: 16px 0 4px; }
+.vdp-price { font-size: 36px; font-weight: 900; color: var(--dark-800); margin: 16px 0 4px; }
 .vdp-payment { color: var(--green-600); font-weight: 700; font-size: 14.5px; margin-bottom: 18px; }
 .vdp-actions { display: grid; gap: 10px; margin-bottom: 22px; }
 
@@ -376,7 +384,7 @@ a { color: inherit; text-decoration: none; }
 
 /* Payment calculator */
 .calc {
-  background: var(--navy-100); border-radius: 12px; padding: 18px; margin-top: 20px;
+  background: var(--gray-100); border-radius: 12px; padding: 18px; margin-top: 20px;
 }
 .calc h3 { font-size: 15px; font-weight: 800; margin-bottom: 12px; }
 .calc-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
@@ -386,7 +394,7 @@ a { color: inherit; text-decoration: none; }
   border-radius: 8px; font-size: 14px; font-family: var(--font); background: #fff;
 }
 .calc-result { margin-top: 14px; font-size: 15px; }
-.calc-result strong { font-size: 24px; color: var(--navy-800); }
+.calc-result strong { font-size: 24px; color: var(--dark-800); }
 .calc-note { font-size: 11.5px; color: var(--ink-soft); margin-top: 8px; }
 
 /* ---------- Forms ---------- */
@@ -404,7 +412,7 @@ a { color: inherit; text-decoration: none; }
 }
 .form-card textarea { resize: vertical; min-height: 100px; }
 .form-note {
-  font-size: 13px; color: var(--ink-soft); background: var(--navy-100);
+  font-size: 13px; color: var(--ink-soft); background: var(--gray-100);
   border-radius: 9px; padding: 12px 14px; margin: 16px 0;
 }
 .form-success {
@@ -414,7 +422,7 @@ a { color: inherit; text-decoration: none; }
 
 /* ---------- Footer ---------- */
 
-.site-footer { background: var(--navy-900); color: #9fb0ca; margin-top: 40px; }
+.site-footer { background: var(--dark-900); color: #9fb0ca; margin-top: 40px; }
 .footer-grid {
   display: grid; grid-template-columns: 1.4fr 1fr 1fr 1.2fr; gap: 30px;
   padding: 48px 0 36px;
@@ -437,7 +445,7 @@ a { color: inherit; text-decoration: none; }
 @media (max-width: 960px) {
   .main-nav {
     display: none; position: absolute; top: 100%; left: 0; right: 0;
-    background: var(--navy-800); flex-direction: column; align-items: stretch;
+    background: var(--dark-800); flex-direction: column; align-items: stretch;
     padding: 12px 20px 20px; gap: 4px; box-shadow: 0 14px 24px rgba(0,0,0,0.3);
   }
   .main-nav.open { display: flex; }

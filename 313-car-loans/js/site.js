@@ -210,7 +210,7 @@
       root.innerHTML =
         '<div class="empty-state" style="margin:40px 0">' +
         "<strong>Vehicle not found.</strong>" +
-        'It may have just sold. <a href="inventory.html" style="color:var(--navy-800);font-weight:700;text-decoration:underline">Browse the rest of our inventory →</a>' +
+        'It may have just sold. <a href="inventory.html" style="color:var(--dark-800);font-weight:700;text-decoration:underline">Browse the rest of our inventory →</a>' +
         "</div>";
       return;
     }
