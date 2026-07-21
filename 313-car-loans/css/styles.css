@@ -150,6 +150,20 @@ a { color: inherit; text-decoration: none; }
 .hero-sign {
   width: 300px; height: auto; justify-self: end;
   filter: drop-shadow(0 26px 50px rgba(0, 0, 0, 0.65));
+  animation: sign-slam 0.7s cubic-bezier(0.22, 1, 0.36, 1) 0.25s both;
+}
+
+/* Page-load snap zoom: the sign slams in oversized, overshoots
+   slightly small, then settles — like a stamp hitting the page. */
+@keyframes sign-slam {
+  0%   { opacity: 0; transform: scale(2.9); }
+  55%  { opacity: 1; transform: scale(0.94); }
+  78%  { transform: scale(1.05); }
+  100% { opacity: 1; transform: scale(1); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-sign { animation: none; }
 }
 .hero-kicker {
   display: inline-block; background: rgba(193, 18, 31, 0.22);
