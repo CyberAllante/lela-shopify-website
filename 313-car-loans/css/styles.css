@@ -87,13 +87,13 @@ a { color: inherit; text-decoration: none; }
 }
 .site-header .container {
   display: flex; align-items: center; justify-content: space-between;
-  gap: 20px; min-height: 72px;
+  gap: 20px; min-height: 88px;
 }
 
 .brand { display: flex; align-items: center; gap: 12px; }
-.brand-logo { height: 48px; width: 48px; flex: 0 0 auto;
-  filter: drop-shadow(0 2px 5px rgba(0, 0, 0, 0.4)); }
-.brand-name { font-weight: 800; font-size: 17px; line-height: 1.2; }
+.brand-logo { height: 66px; width: 66px; flex: 0 0 auto;
+  filter: drop-shadow(0 3px 7px rgba(0, 0, 0, 0.45)); }
+.brand-name { font-weight: 800; font-size: 19px; line-height: 1.2; }
 .brand-name small {
   display: block; font-weight: 600; font-size: 11.5px;
   color: #9fb0ca; letter-spacing: 0.4px; text-transform: uppercase;
@@ -125,18 +125,25 @@ a { color: inherit; text-decoration: none; }
 
 .hero {
   background:
-    radial-gradient(1100px 500px at 85% -10%, rgba(193, 18, 31, 0.30), transparent 60%),
+    radial-gradient(1100px 500px at 85% -10%, rgba(193, 18, 31, 0.35), transparent 60%),
+    linear-gradient(105deg, rgba(18, 19, 22, 0.95) 0%, rgba(18, 19, 22, 0.83) 45%, rgba(18, 19, 22, 0.42) 100%),
+    /* Hero photo: AI-generated stand-in of the lot (Higgsfield). When the owner
+       sends real shop photos, save one as assets/hero-lot.jpg and point this
+       url() at it. If the image ever fails to load, the gradient below shows. */
+    url("https://d8j0ntlcm91z4.cloudfront.net/user_3F5HWbv7Bu2aaFUxJxfa9tx8cxS/hf_20260721_141124_f4227a40-b826-4eb2-abb8-05b819ec01c5.png") center / cover no-repeat,
     linear-gradient(160deg, var(--dark-900) 0%, var(--dark-700) 100%);
   color: #fff; padding: 72px 0 96px; position: relative; overflow: hidden;
 }
-.hero::after {
-  /* oversized stop-sign octagon watermark */
-  content: ""; position: absolute; right: -110px; top: -30px;
-  width: 460px; height: 460px; transform: rotate(12deg);
-  background: rgba(193, 18, 31, 0.18);
-  clip-path: polygon(30% 0, 70% 0, 100% 30%, 100% 70%, 70% 100%, 30% 100%);
+.hero .container {
+  position: relative; z-index: 1;
+  display: grid; grid-template-columns: minmax(0, 1.25fr) auto;
+  gap: 40px; align-items: center;
 }
-.hero .container { position: relative; z-index: 1; }
+.hero-sign {
+  width: 320px; height: 320px; justify-self: end;
+  transform: rotate(-4deg);
+  filter: drop-shadow(0 26px 50px rgba(0, 0, 0, 0.6));
+}
 .hero-kicker {
   display: inline-block; background: rgba(193, 18, 31, 0.22);
   color: var(--brand-soft); border: 1px solid rgba(255, 77, 85, 0.45);
@@ -452,6 +459,8 @@ a { color: inherit; text-decoration: none; }
   .main-nav a { padding: 12px 4px; border-bottom: 1px solid rgba(255,255,255,0.08); }
   .nav-toggle { display: block; }
   .header-cta .btn { display: none; }
+  .hero .container { grid-template-columns: 1fr; gap: 22px; }
+  .hero-sign { width: 150px; height: 150px; justify-self: start; order: -1; transform: none; }
   .quick-search { grid-template-columns: 1fr 1fr; }
   .trust-grid { grid-template-columns: 1fr 1fr; }
   .finance-banner { grid-template-columns: 1fr; padding: 30px; }

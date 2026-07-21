@@ -104,6 +104,9 @@ SSNs through a static-site form.
 
 ## Things to verify with the owner before launch
 
+- [ ] Hero photo — currently an AI-generated stand-in of "the lot" (Higgsfield), hotlinked in
+      `css/styles.css`. Replace with a real photo of the shop: save it as `assets/hero-lot.jpg`
+      and point the `url()` in the `.hero` rule at it (Google Business Profile photos work great)
 - [ ] Business hours (currently placeholders: M–F 10–6, Sat 10–4, Sun closed)
 - [ ] Address — listings show both "8146 E 8 Mile Rd" and "8146 W 8 Mile Rd / M-102"; confirm which is right
 - [ ] Real customer reviews to replace the sample ones on the homepage
@@ -116,8 +119,9 @@ SSNs through a static-site form.
 All colors are CSS variables at the top of `css/styles.css`:
 
 ```css
---navy-800: #101e36;   /* header / dark sections */
---amber-500: #f5a623;  /* CTA buttons + accents  */
+--dark-800: #1a1c21;    /* header / dark sections */
+--brand-600: #c1121f;   /* stop-sign red — CTAs + accents */
 ```
 
-Change those two and the whole site follows.
+Change those two and the whole site follows. The logo lives in `assets/logo.svg`
+(used in the header, hero, footer, and favicon).
