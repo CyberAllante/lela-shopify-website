@@ -222,6 +222,7 @@
     var phoneHref = DATA.dealership.phoneHref || "tel:+13138918000";
 
     root.innerHTML =
+      '<a class="vdp-back" href="inventory.html">\u2190 Return to Inventory</a>' +
       '<div class="vdp-layout">' +
         "<div>" +
           '<div class="gallery-main"><img id="gallery-main-img" src="' + imgs[0] + '" alt="' + title(v) + '"></div>' +
@@ -244,6 +245,7 @@
           '<div class="vdp-panel">' +
             "<h1>" + title(v) + "</h1>" +
             '<div class="vdp-sub">Stock #' + (v.stock || "—") + (v.vin ? " · VIN " + v.vin : "") + "</div>" +
+            '<div class="vdp-price-label">Retail Price</div>' +
             '<div class="vdp-price">' + money(v.price) + "</div>" +
             '<div class="vdp-payment">est. ' + money(Math.round(estMonthly(v.price))) + "/mo* with 10% down</div>" +
             '<div class="vdp-actions">' +
@@ -260,6 +262,8 @@
               "<tr><td>Drivetrain</td><td>" + (v.drivetrain || "—") + "</td></tr>" +
               "<tr><td>Exterior</td><td>" + (v.exteriorColor || "—") + "</td></tr>" +
               "<tr><td>Interior</td><td>" + (v.interiorColor || "—") + "</td></tr>" +
+              "<tr><td>Fuel</td><td>" + (v.fuel || "Gasoline") + "</td></tr>" +
+              (v.vin ? '<tr><td>VIN</td><td style="font-size:12.5px">' + v.vin + "</td></tr>" : "") +
               (v.mpgCity ? "<tr><td>MPG (city/hwy)</td><td>" + v.mpgCity + " / " + v.mpgHwy + "</td></tr>" : "") +
             "</table>" +
             '<div class="calc">' +
@@ -274,6 +278,22 @@
               '<div class="calc-result">Estimated payment: <strong id="calc-out"></strong>/mo</div>' +
               '<div class="calc-note">*Estimate only. Not a financing offer — your rate and terms depend on credit approval.</div>' +
             "</div>" +
+          "</div>" +
+          '<div class="form-card vdp-inquiry">' +
+            '<h2 style="font-size:20px;font-weight:800;margin-bottom:4px">Ask About This ' + v.model + "</h2>" +
+            '<p style="color:var(--ink-soft);font-size:13.5px;margin-bottom:14px">Send an inquiry and we\'ll get right back to you.</p>' +
+            '<form id="vdp-inquiry-form">' +
+              '<div class="form-grid">' +
+                '<div><label for="vq-first">First Name *</label><input id="vq-first" name="First Name" required autocomplete="given-name"></div>' +
+                '<div><label for="vq-last">Last Name *</label><input id="vq-last" name="Last Name" required autocomplete="family-name"></div>' +
+                '<div><label for="vq-phone">Mobile Phone *</label><input id="vq-phone" name="Mobile Phone" type="tel" required autocomplete="tel"></div>' +
+                '<div><label for="vq-email">Email</label><input id="vq-email" name="Email" type="email" autocomplete="email"></div>' +
+                '<div class="full"><label for="vq-comments">Comments</label><textarea id="vq-comments" name="Comments">Is the ' + title(v) + " still available?</textarea></div>" +
+              "</div>" +
+              '<label class="consent" style="font-size:12px"><input type="checkbox" name="OK to text or call" checked> <span>OK to text/call me back about this vehicle at the number provided. Message &amp; data rates may apply. Reply STOP to opt out.</span></label>' +
+              '<button class="btn btn-primary btn-block" type="submit" style="margin-top:14px">Send Inquiry</button>' +
+              '<div class="form-success" id="vdp-inquiry-success">Opening your email app \u2014 hit send and we\'ll get right back to you. Or call 313-891-8000.</div>' +
+            "</form>" +
           "</div>" +
         "</div>" +
       "</div>";
@@ -299,6 +319,21 @@
       $("#" + fid).addEventListener("change", recalc);
     });
     recalc();
+
+    // Inquiry form: compose an email to the sales desk
+    var iq = $("#vdp-inquiry-form");
+    iq.addEventListener("submit", function (e) {
+      e.preventDefault();
+      var lines = $all("input, textarea", iq)
+        .filter(function (f) { return f.name && f.value; })
+        .map(function (f) { return f.name + ": " + (f.type === "checkbox" ? (f.checked ? "Yes" : "No") : f.value); });
+      lines.unshift("Vehicle: " + title(v) + (v.stock ? " (Stock #" + v.stock + ")" : ""));
+      window.location.href =
+        "mailto:sales@313carloans.com" +
+        "?subject=" + encodeURIComponent("Vehicle Inquiry: " + title(v)) +
+        "&body=" + encodeURIComponent(lines.join("\n"));
+      $("#vdp-inquiry-success").style.display = "block";
+    });
 
     // SEO: schema.org Vehicle markup
     var ld = {
