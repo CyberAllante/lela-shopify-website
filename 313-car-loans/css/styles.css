@@ -21,7 +21,7 @@
   --bg: #f4f6fb;
   --card: #ffffff;
   --green-600: #1e9e5a;
-  --radius: 14px;
+  --radius: 10px;
   --shadow: 0 2px 10px rgba(18, 19, 22, 0.08);
   --shadow-lift: 0 12px 28px rgba(18, 19, 22, 0.16);
   --font: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue",
@@ -50,7 +50,7 @@ a { color: inherit; text-decoration: none; }
 
 .btn {
   display: inline-flex; align-items: center; justify-content: center; gap: 8px;
-  padding: 13px 26px; border-radius: 999px; border: 0; cursor: pointer;
+  padding: 13px 26px; border-radius: 6px; border: 0; cursor: pointer;
   font-size: 16px; font-weight: 700; font-family: var(--font);
   transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
   white-space: nowrap;
@@ -108,7 +108,7 @@ a { color: inherit; text-decoration: none; }
 .main-nav a:hover, .main-nav a.active { color: #fff; border-color: var(--brand-600); }
 .main-nav .nav-apply {
   background: var(--brand-600); color: #fff; font-weight: 700;
-  padding: 10px 20px; border-radius: 999px; border-bottom: 0;
+  padding: 10px 20px; border-radius: 6px; border-bottom: 0;
 }
 .main-nav .nav-apply:hover { background: var(--brand-700); color: #fff; }
 
@@ -116,7 +116,7 @@ a { color: inherit; text-decoration: none; }
 .call-btn {
   display: inline-flex; align-items: center; gap: 8px; white-space: nowrap;
   background: var(--brand-600); color: #fff;
-  font-weight: 800; padding: 10px 18px; border-radius: 999px; font-size: 15px;
+  font-weight: 800; padding: 10px 18px; border-radius: 6px; font-size: 15px;
   transition: background 0.15s ease;
 }
 .call-btn:hover { background: var(--brand-700); }
@@ -155,7 +155,7 @@ a { color: inherit; text-decoration: none; }
   display: inline-block; background: rgba(193, 18, 31, 0.22);
   color: var(--brand-soft); border: 1px solid rgba(255, 77, 85, 0.45);
   font-size: 13px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase;
-  padding: 6px 14px; border-radius: 999px; margin-bottom: 18px;
+  padding: 6px 14px; border-radius: 6px; margin-bottom: 18px;
 }
 .hero h1 {
   font-size: clamp(34px, 5.2vw, 56px); line-height: 1.08;
@@ -182,7 +182,7 @@ a { color: inherit; text-decoration: none; }
 }
 .quick-search select, .quick-search input {
   width: 100%; padding: 11px 12px; border: 1.5px solid var(--line);
-  border-radius: 9px; font-size: 15px; font-family: var(--font);
+  border-radius: 6px; font-size: 15px; font-family: var(--font);
   background: #fff; color: var(--ink);
 }
 
@@ -197,7 +197,7 @@ a { color: inherit; text-decoration: none; }
   padding: 18px; display: flex; gap: 13px; align-items: center;
 }
 .trust-item .icon {
-  width: 44px; height: 44px; flex: 0 0 44px; border-radius: 11px;
+  width: 44px; height: 44px; flex: 0 0 44px; border-radius: 8px;
   background: var(--gray-100); display: grid; place-items: center;
   font-size: 21px;
 }
@@ -236,7 +236,7 @@ a { color: inherit; text-decoration: none; }
 .vehicle-photo .tag {
   position: absolute; top: 12px; left: 12px;
   background: var(--red-600); color: #fff; font-size: 12px; font-weight: 800;
-  padding: 5px 11px; border-radius: 999px; letter-spacing: 0.4px;
+  padding: 5px 11px; border-radius: 6px; letter-spacing: 0.4px;
 }
 .vehicle-photo .tag.sold { background: var(--ink); }
 .vehicle-body { padding: 16px 16px 18px; display: flex; flex-direction: column; flex: 1; }
@@ -247,7 +247,7 @@ a { color: inherit; text-decoration: none; }
 }
 .chip {
   background: var(--gray-100); color: var(--dark-800);
-  font-size: 12px; font-weight: 700; padding: 4px 10px; border-radius: 999px;
+  font-size: 12px; font-weight: 700; padding: 4px 10px; border-radius: 6px;
 }
 .vehicle-foot {
   margin-top: auto; display: flex; align-items: center;
@@ -262,7 +262,7 @@ a { color: inherit; text-decoration: none; }
   background:
     radial-gradient(800px 300px at 10% 120%, rgba(193, 18, 31, 0.30), transparent 60%),
     linear-gradient(140deg, var(--dark-800), var(--dark-900));
-  border-radius: 20px; color: #fff; padding: 44px;
+  border-radius: 12px; color: #fff; padding: 44px;
   display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 30px; align-items: center;
 }
 .finance-banner h2 { font-size: clamp(24px, 3vw, 32px); font-weight: 900; letter-spacing: -0.5px; }
@@ -331,7 +331,7 @@ a { color: inherit; text-decoration: none; }
 }
 .filter-group select, .filter-group input {
   width: 100%; padding: 10px 11px; border: 1.5px solid var(--line);
-  border-radius: 9px; font-size: 14.5px; font-family: var(--font); background: #fff;
+  border-radius: 6px; font-size: 14.5px; font-family: var(--font); background: #fff;
 }
 .results-bar {
   display: flex; justify-content: space-between; align-items: center;
@@ -339,7 +339,7 @@ a { color: inherit; text-decoration: none; }
 }
 .results-bar .count { font-weight: 700; color: var(--ink-soft); font-size: 14.5px; }
 .results-bar select {
-  padding: 9px 12px; border: 1.5px solid var(--line); border-radius: 9px;
+  padding: 9px 12px; border: 1.5px solid var(--line); border-radius: 6px;
   font-size: 14px; font-family: var(--font); background: #fff;
 }
 .empty-state {
@@ -363,7 +363,7 @@ a { color: inherit; text-decoration: none; }
   display: grid; grid-template-columns: repeat(6, 1fr); gap: 10px; margin-top: 12px;
 }
 .gallery-thumbs button {
-  aspect-ratio: 4 / 3; border-radius: 9px; overflow: hidden; cursor: pointer;
+  aspect-ratio: 4 / 3; border-radius: 6px; overflow: hidden; cursor: pointer;
   border: 2px solid transparent; padding: 0; background: #dfe6f2;
 }
 .gallery-thumbs button.active { border-color: var(--brand-600); }
@@ -398,14 +398,14 @@ a { color: inherit; text-decoration: none; }
 
 /* Payment calculator */
 .calc {
-  background: var(--gray-100); border-radius: 12px; padding: 18px; margin-top: 20px;
+  background: var(--gray-100); border-radius: 8px; padding: 18px; margin-top: 20px;
 }
 .calc h3 { font-size: 15px; font-weight: 800; margin-bottom: 12px; }
 .calc-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
 .calc-grid label { font-size: 12px; font-weight: 700; color: var(--ink-soft); display: block; margin-bottom: 4px; }
 .calc-grid input, .calc-grid select {
   width: 100%; padding: 9px 10px; border: 1.5px solid var(--line);
-  border-radius: 8px; font-size: 14px; font-family: var(--font); background: #fff;
+  border-radius: 6px; font-size: 14px; font-family: var(--font); background: #fff;
 }
 .calc-result { margin-top: 14px; font-size: 15px; }
 .calc-result strong { font-size: 24px; color: var(--dark-800); }
@@ -422,15 +422,15 @@ a { color: inherit; text-decoration: none; }
 .form-card label { font-size: 13px; font-weight: 700; display: block; margin-bottom: 6px; }
 .form-card input, .form-card select, .form-card textarea {
   width: 100%; padding: 12px 13px; border: 1.5px solid var(--line);
-  border-radius: 9px; font-size: 15px; font-family: var(--font); background: #fff;
+  border-radius: 6px; font-size: 15px; font-family: var(--font); background: #fff;
 }
 .form-card textarea { resize: vertical; min-height: 100px; }
 .form-note {
   font-size: 13px; color: var(--ink-soft); background: var(--gray-100);
-  border-radius: 9px; padding: 12px 14px; margin: 16px 0;
+  border-radius: 6px; padding: 12px 14px; margin: 16px 0;
 }
 .form-success {
-  background: #e7f7ee; color: var(--green-600); border-radius: 9px;
+  background: #e7f7ee; color: var(--green-600); border-radius: 6px;
   padding: 14px 16px; font-weight: 700; margin-top: 16px; display: none;
 }
 
