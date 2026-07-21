@@ -108,10 +108,10 @@ SSNs through a static-site form.
       `css/styles.css`. Replace with a real photo of the shop: save it as `assets/hero-lot.jpg`
       and point the `url()` in the `.hero` rule at it (Google Business Profile photos work great)
 - [ ] Business hours (currently placeholders: M–F 10–6, Sat 10–4, Sun closed)
-- [ ] Address — listings show both "8146 E 8 Mile Rd" and "8146 W 8 Mile Rd / M-102"; confirm which is right
+- [x] Address confirmed: 8146 E 8 Mile Rd (M-102) at Van Dyke — matches their site and the street signs in their logo
 - [ ] Real customer reviews to replace the sample ones on the homepage
 - [ ] Lead email address (form currently targets `sales@313carloans.com` — likely wrong)
-- [ ] Logo / brand colors if they have them (edit CSS variables at the top of `styles.css`)
+- [x] Logo: real transparent PNG in `assets/logo.png` (owner-provided); `assets/logo.svg` kept as a spare octagon mark
 - [ ] Whether they're keeping Dealer Car Search for back-office (recommended at first)
 
 ## Re-theming in 30 seconds
@@ -123,5 +123,5 @@ All colors are CSS variables at the top of `css/styles.css`:
 --brand-600: #c1121f;   /* stop-sign red — CTAs + accents */
 ```
 
-Change those two and the whole site follows. The logo lives in `assets/logo.svg`
-(used in the header, hero, footer, and favicon).
+Change those two and the whole site follows. The real logo lives in `assets/logo.png`
+(header, hero, footer); the favicon is a small octagon inline in each page's `<head>`.
