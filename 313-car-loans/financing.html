@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Get Pre-Approved | Easy Auto Financing Detroit | Matthew's Stop and Look</title>
+  <meta name="description" content="Fast, friendly auto financing in Detroit for every credit situation. $0 down options, all income types welcome. Get pre-approved in minutes.">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='18' fill='%23f5a623'/><text x='50' y='68' font-size='46' font-weight='bold' text-anchor='middle' font-family='Arial'>313</text></svg>">
+</head>
+<body data-page="financing">
+
+  <div class="topbar">
+    <div class="container">
+      <span class="hours">Serving Detroit for 18+ years · 8146 E 8 Mile Rd, Detroit, MI 48234</span>
+      <span>Questions? <a href="tel:+13138918000">313-891-8000</a></span>
+    </div>
+  </div>
+
+  <header class="site-header">
+    <div class="container">
+      <a class="brand" href="index.html">
+        <span class="brand-badge">313</span>
+        <span class="brand-name">Matthew's Stop &amp; Look<small>Auto Sales · Detroit</small></span>
+      </a>
+      <nav class="main-nav" id="main-nav">
+        <a href="inventory.html" data-nav="inventory">Inventory</a>
+        <a href="financing.html" data-nav="financing">Financing</a>
+        <a href="financing.html#trade" data-nav="trade">Trade-In</a>
+        <a href="about.html" data-nav="about">About &amp; Visit</a>
+      </nav>
+      <div class="header-cta">
+        <a class="call-btn" href="tel:+13138918000">📞 313-891-8000</a>
+        <button class="nav-toggle" aria-label="Menu" aria-controls="main-nav">☰</button>
+      </div>
+    </div>
+  </header>
+
+  <section class="page-hero">
+    <div class="container">
+      <h1>Financing that says <span style="color:var(--amber-500)">yes</span></h1>
+      <p>Good credit, bad credit, no credit, rebuilding — we finance real life. Tell us a little about yourself and we'll have options ready before you even visit the lot.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container" style="display:grid;grid-template-columns:1fr;gap:26px">
+      <div class="form-card" style="max-width:none">
+        <h2 style="margin-bottom:6px">Quick Pre-Approval</h2>
+        <p style="color:var(--ink-soft);margin-bottom:20px">Takes about two minutes. This is a soft inquiry — it will <strong>not</strong> affect your credit score.</p>
+        <form id="finance-form">
+          <div class="form-grid">
+            <div>
+              <label for="fin-first">First Name *</label>
+              <input id="fin-first" name="First Name" required autocomplete="given-name">
+            </div>
+            <div>
+              <label for="fin-last">Last Name *</label>
+              <input id="fin-last" name="Last Name" required autocomplete="family-name">
+            </div>
+            <div>
+              <label for="fin-phone">Phone *</label>
+              <input id="fin-phone" name="Phone" type="tel" required autocomplete="tel">
+            </div>
+            <div>
+              <label for="fin-email">Email</label>
+              <input id="fin-email" name="Email" type="email" autocomplete="email">
+            </div>
+            <div>
+              <label for="fin-income">Monthly Income (before taxes)</label>
+              <select id="fin-income" name="Monthly Income">
+                <option value="">Select…</option>
+                <option>Under $1,500</option>
+                <option>$1,500 – $2,500</option>
+                <option>$2,500 – $4,000</option>
+                <option>Over $4,000</option>
+              </select>
+            </div>
+            <div>
+              <label for="fin-employment">Income Type</label>
+              <select id="fin-employment" name="Income Type">
+                <option value="">Select…</option>
+                <option>W-2 Employee</option>
+                <option>Self-Employed / 1099</option>
+                <option>SSI / Disability</option>
+                <option>Retirement</option>
+                <option>Other</option>
+              </select>
+            </div>
+            <div>
+              <label for="fin-down">Planned Down Payment</label>
+              <select id="fin-down" name="Down Payment">
+                <option value="">Select…</option>
+                <option>$0 down</option>
+                <option>Under $500</option>
+                <option>$500 – $1,000</option>
+                <option>$1,000 – $2,500</option>
+                <option>Over $2,500</option>
+              </select>
+            </div>
+            <div>
+              <label for="fin-vehicle">Vehicle of Interest</label>
+              <input id="fin-vehicle" name="Vehicle of Interest" placeholder="e.g. 2019 Chevy Malibu">
+            </div>
+            <div class="full" id="trade">
+              <label for="fin-trade">Trading in a vehicle? Tell us about it</label>
+              <textarea id="fin-trade" name="Trade-In" placeholder="Year, make, model, mileage, condition — any trade accepted, running or not"></textarea>
+            </div>
+          </div>
+          <div class="form-note">
+            🔒 We never ask for your Social Security number online. Final credit applications are completed securely at the dealership. Your info goes straight to our sales team and is never sold.
+          </div>
+          <button class="btn btn-primary" type="submit">Send My Pre-Approval Request</button>
+          <div class="form-success" id="form-success">
+            ✅ Thanks! Your email app should open with your request — hit send and we'll call you back fast. Or just call us now at 313-891-8000.
+          </div>
+        </form>
+      </div>
+
+      <div class="finance-banner">
+        <div>
+          <h2>Rather talk to a human?</h2>
+          <p>We get it — financing questions are personal. Call and ask for the finance desk. No scripts, no runaround, just straight answers about what you can drive home today.</p>
+        </div>
+        <div class="finance-cta">
+          <a class="btn btn-primary" href="tel:+13138918000">Call 313-891-8000</a>
+          <a class="btn btn-outline" href="about.html#visit">Or stop by the lot →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-bottom">
+        <span>© <span id="footer-year"></span> McQueen Auto, Inc. DBA Matthew's Stop and Look Auto Sales · <a href="tel:+13138918000">313-891-8000</a></span>
+        <span>Pre-approval requests are not a guarantee of financing.</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="data/inventory.js"></script>
+  <script src="js/site.js"></script>
+</body>
+</html>

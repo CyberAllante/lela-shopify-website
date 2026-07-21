@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#16294a"/>
+      <stop offset="1" stop-color="#0b1526"/>
+    </linearGradient>
+  </defs>
+  <rect width="400" height="300" fill="url(#bg)"/>
+  <ellipse cx="200" cy="234" rx="160" ry="12" fill="#000" opacity="0.35"/>
+  <g fill="#f5a623">
+    <path d="M70 212c0-8 6-14 14-14h4v-20c0-6 5-11 11-11h101v-30c0-9 7-16 16-16h52c7 0 13 3 17 9l24 34c3 5 5 10 5 16v18h4c8 0 14 6 14 14v10c0 4-3 8-8 8h-14a26 26 0 0 1-52 0h-92a26 26 0 0 1-52 0H78c-5 0-8-4-8-8v-10z" opacity="0.92"/>
+  </g>
+  <g fill="#0b1526">
+    <path d="M212 138h47c4 0 8 2 10 5l19 27h-76v-32z" opacity="0.85"/>
+    <circle cx="130" cy="234" r="16"/>
+    <circle cx="270" cy="234" r="16"/>
+  </g>
+  <g fill="#9fb0ca">
+    <circle cx="130" cy="234" r="7"/>
+    <circle cx="270" cy="234" r="7"/>
+  </g>
+  <text x="200" y="284" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" fill="#9fb0ca" letter-spacing="2">PHOTO COMING SOON</text>
+</svg>
