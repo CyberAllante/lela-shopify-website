@@ -247,8 +247,9 @@
             '<div class="vdp-price">' + money(v.price) + "</div>" +
             '<div class="vdp-payment">est. ' + money(Math.round(estMonthly(v.price))) + "/mo* with 10% down</div>" +
             '<div class="vdp-actions">' +
-              '<a class="btn btn-primary btn-block" href="financing.html?vehicle=' + encodeURIComponent(title(v)) + '">Get Pre-Approved</a>' +
+              '<a class="btn btn-primary btn-block" href="https://313carloans.com/creditapp" target="_blank" rel="noopener">Apply For Credit</a>' +
               '<a class="btn btn-dark btn-block" href="' + phoneHref + '">Call ' + phone + "</a>" +
+              '<a class="btn btn-ghost btn-block" href="sms:+13138918000">💬 Text Us About This Car</a>' +
               '<a class="btn btn-ghost btn-block" href="financing.html?vehicle=' + encodeURIComponent(title(v)) + "#trade" + '">Value My Trade-In</a>' +
             "</div>" +
             '<table class="spec-table">' +

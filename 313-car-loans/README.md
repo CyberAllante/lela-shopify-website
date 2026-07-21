@@ -104,9 +104,10 @@ SSNs through a static-site form.
 
 ## Things to verify with the owner before launch
 
-- [ ] Hero photo — currently an AI-generated stand-in of "the lot" (Higgsfield), hotlinked in
-      `css/styles.css`. Replace with a real photo of the shop: save it as `assets/hero-lot.jpg`
-      and point the `url()` in the `.hero` rule at it (Google Business Profile photos work great)
+- [x] Hero photo: real vehicle photo from their site (`assets/hero-car.jpg`). Swap the file
+      any time for a pro shot of the lot — same filename, no other change needed
+- [x] Credit app: every "Apply For Credit" button links to their existing secure
+      application at https://313carloans.com/creditapp (Dealer Car Search hosted)
 - [ ] Business hours (currently placeholders: M–F 10–6, Sat 10–4, Sun closed)
 - [x] Address confirmed: 8146 E 8 Mile Rd (M-102) at Van Dyke — matches their site and the street signs in their logo
 - [ ] Real customer reviews to replace the sample ones on the homepage
